@@ -1,0 +1,54 @@
+<!-- payment_processing.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processing</title>
+    <link rel="stylesheet" href="/static/stylecss.css"> 
+</head>
+<body>
+    
+    <header>
+        <h1>Payment Processing</h1>
+    </header>
+   
+
+    <div class="container">
+        <div class="payment-details">
+            <h2>Order Summary</h2>
+            <p>Product: Product 1</p>
+            {% if request.method == 'POST' %}
+                {% set price = request.form.get('price') %}
+                <p>Price: ${{ price }}</p>
+            {% endif %}
+            <!-- Add more details as needed -->
+        </div>
+        <div class="payment-form">
+            <h2>Payment Information</h2>
+            <p>Thank you for your purchase!</p>
+            <p>Please proceed with payment:</p>
+            <a href="https://www.paypal.com/paypalme/my/profile" class="paypal-link">
+                <img src="/static/download.png" alt="PayPal Logo" class="logo">
+                Pay with PayPal
+            </a>
+            </a>
+            <h3>Upload Transaction Proof</h3>
+            <p>Please contact us via WhatsApp to send payment proof and receive the download password:</p>
+            <a href="https://wa.me/6282211124715?text=Hi%20saya%20telah%20menyelesaikan%20pembayaran%20dan%20melampirkan%20bukti%20pembayaran%20di%20sini." target="_blank">
+                <img src="/static/download.jpg" alt="WhatsApp Logo" class="logo">
+                Contact via WhatsApp
+            </a>
+        </div>
+        <form action="/download_link" method="POST">
+            <label for="password">Insert password here:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Payment Processing</p>
+    </footer>
+</body>
+</html>

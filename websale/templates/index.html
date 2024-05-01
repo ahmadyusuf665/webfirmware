@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firmware Sales</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Firmware Sales</h1>
+    </header>
+    <nav>
+        <!-- Tautan menu untuk berpindah ke halaman indeks -->
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="#">Products</a>
+        <!-- Tautan menu untuk membuka aplikasi WhatsApp -->
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+    <div class="container">
+        <div class="product" id="product-99">
+            <img src="/static/imagesv1.jpg" alt="Canon Firmware">
+            <h3>Canon Firmware Update</h3>
+            <p>Stay up to date with the latest firmware for your Canon camera. Ensure optimal performance and compatibility with new features.</p>
+            <p><strong>Price:</strong> $99</p>
+            <button onclick="displayPayPalForm(99)">Buy Now</button>
+        </div>
+        
+        <div class="product" id="product-80">
+            <img src="/static/imagesv1.jpg" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>Brief description of product 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p><strong>Price:</strong> $80</p>
+            <button onclick="displayPayPalForm(80)">Buy Now</button>
+        </div>
+        
+        <div class="product" id="product-149">
+            <img src="/static/imagesv1.jpg" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>Brief description of product 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p><strong>Price:</strong> $149</p>
+            <button onclick="displayPayPalForm(149)">Buy Now</button>
+        </div>
+        
+        <!-- add more products as needed -->
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Firmware Sales</p>
+    </footer>
+
+    <script>
+        function displayPayPalForm(price) {
+            var form = document.createElement('form');
+            form.setAttribute('action', '{{ url_for("checkout", price=0) }}'.replace('0', price));
+            form.setAttribute('method', 'post');
+            form.innerHTML = `
+                <input type="hidden" name="price" value="${price}">
+                
+            `;
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</body>
+</html>
